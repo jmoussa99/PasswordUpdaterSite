@@ -1,0 +1,24 @@
+﻿@model PasswordUpdaterFramework.Models.PasswordResetModel
+@{
+    ViewBag.Title = "Reset Password";
+}
+
+<h2>Reset Password</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <label>Username:</label>
+        @Html.TextBoxFor(m => m.Username)
+    </div>
+    <div>
+        <label>New Password:</label>
+        @Html.PasswordFor(m => m.NewPassword)
+    </div>
+    <button type="submit">Reset Password</button>
+}
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}

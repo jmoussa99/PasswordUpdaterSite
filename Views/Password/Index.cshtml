@@ -1,0 +1,108 @@
+﻿@model PasswordUpdaterFramework.Models.PasswordResetModel
+@{
+    ViewBag.Title = "Reset Password";
+}
+
+<style>
+    body {
+        background: linear-gradient(to bottom right, #004c7f, #094d80);
+        font-family: sans-serif;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        padding-top: 100px;
+    }
+
+    .form-container {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 30px;
+        width: 100%;
+        max-width: 341px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .form-title {
+        font-weight: bold;
+        font-size: 1.4em;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #555;
+        font-family: sans-serif;
+        display: block;
+        text-align: left;
+    }
+
+    .form-control {
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 10px;
+        font-family: sans-serif;
+        width: 100%;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        display: block;
+    }
+
+        .form-control::placeholder {
+            font-family: sans-serif;
+            text-align: left;
+        }
+
+    .submit-button {
+        background-color: #ff4f81;
+        color: white;
+        font-weight: bold;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        border-radius: 6px;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+        font-family: sans-serif;
+        box-sizing: border-box;
+        display: block;
+    }
+
+    .submit-button:hover {
+        background-color: #e63e6d;
+    }
+
+    .alert-danger {
+        color: red;
+    }
+
+</style>
+
+<div class="form-container">
+    <div class="form-title">OnBase Password Reset</div>
+
+    @using (Html.BeginForm())
+    {
+        <label asp-for="Username" class="form-label">Username</label>
+        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "JSMITH", required = "required" })
+
+        <label asp-for="NewPassword" class="form-label">Password</label>
+        @Html.PasswordFor(m => m.NewPassword, new { @class = "form-control", required = "required" })
+
+        <label asp-for="repeatPassword" class="form-label">Repeat Password</label>
+        @Html.PasswordFor(m => m.repeatPassword, new { @class = "form-control", required = "required" })
+
+        <button type="submit" class="submit-button">RESET</button>
+    }
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert @(ViewBag.Message.Contains("success") ? "alert-success" : "alert-danger") mt-3" role="alert">
+            @ViewBag.Message
+        </div>
+    }
+</div>
